@@ -1,16 +1,15 @@
 {
   "name": "express-api-template",
-  "version": "1.0.0",
-  "description": "An api template using express",
-  "main": "index.js",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "testme"
+    "start": "node ./src/bin/www"
   },
-  "keywords": [
-    "express",
-    "api",
-    "template"
-  ],
-  "author": "mschurman",
-  "license": "ISC"
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1"
+  }
 }
