@@ -1,6 +1,7 @@
 node_modules/
 yarn-error.log
 .env
+.idea
 .nyc_output
 coverage
 build/
