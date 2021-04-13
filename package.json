@@ -1,0 +1,16 @@
+{
+  "name": "express-api-template",
+  "version": "1.0.0",
+  "description": "An api template using express",
+  "main": "index.js",
+  "scripts": {
+    "test": "testme"
+  },
+  "keywords": [
+    "express",
+    "api",
+    "template"
+  ],
+  "author": "mschurman",
+  "license": "ISC"
+}
