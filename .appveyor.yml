@@ -15,5 +15,3 @@ before_test:
   - createdb testdb
 services:
   - postgresql101
-  
-CONNECTION_STRING=postgresql://postgres:Password12!@localhost:5432/testdb
