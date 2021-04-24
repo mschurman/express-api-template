@@ -14,6 +14,7 @@ describe('Messages', () => {
         done();
       });
   });
+  
   it('posts messages', done => {
     const data = { name: 'some name', message: 'new message' };
     server
