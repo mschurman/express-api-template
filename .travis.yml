@@ -1,39 +1,39 @@
 language: node_js
 env:
   global:
-    - CC_TEST_REPORTER_ID=ca5443e3e575c5f7a83d69462487da8acbd3f2381578b353a7839dd0b4c63974
+  - CC_TEST_REPORTER_ID=ca5443e3e575c5f7a83d69462487da8acbd3f2381578b353a7839dd0b4c63974
 matrix:
   include:
   - node_js: '12'
 cache:
-  directories: [node_modules]
-install:
-  npm install
+  directories:
+  - node_modules
+install: npm install
 after_success: npm run coverage
 before_script:
-  - psql -c 'create database testdb;' -U postgres
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+- psql -c 'create database testdb;' -U postgres
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+  > ./cc-test-reporter
+- chmod +x ./cc-test-reporter
+- "./cc-test-reporter before-build"
 script:
-  - npm run test
+- npm run test
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-
+- "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
 services:
-  - postgresql
+- postgresql
 addons:
-  postgresql: "10"
+  postgresql: '10'
   apt:
     packages:
     - postgresql-10
     - postgresql-client-10
 before_install:
-  - sudo cp /etc/postgresql/{9.6,10}/main/pg_hba.conf
-  - sudo /etc/init.d/postgresql restart
-  
+- sudo cp /etc/postgresql/{9.6,10}/main/pg_hba.conf
+- sudo /etc/init.d/postgresql restart
 deploy:
   provider: heroku
   app:
     master: app-express-api-template
-
+  api_key:
+    secure: J1reqKRIreWzwDGp1zUzZ6u5inNhk4inpVMKBJampIdjNiBsFZW35iwBTSmg6D7urAaIoX3HK6TQS9yKCQJCIHuPLpVeJJk3uTumxPtxBf77MoqzPrAes/H2oKE4QYyC3Yy8ejatmqhGBOPxumBkzCTwb9suPOu6TgJOCgK8nsDDYdMMy+H/bfirtwJ6jpuA+l4GpmYCa12HIgm/82vMs9Xon2GvuJNWDMBP6l03oughNA6WE2O6x1cbZwz65VpIA5pEGFO1ZSL9TwmSOzVwMHLMyS5CCEnMDLvYqikV/gZVG7tmpNCwAavGLoiTfzFH65mwcLeAmKQQDDM6F/gjWDtwji7QtX0D9ry9hQ1/DM9jclAd+/i2M2zgGGHamK3eC5gylQJoWHNh0z/8NoP0vxWpfV0HuM1vwpfrJsZ8xQ8b4kZP4kqBqM1CVylR1RADd5NY16WswzUcSD0cFtlbDHlWNEm8zCO73ysjomlTVdFmnuBm5Y+Jnv81Cpd23VVT9xP4w0nwhtMTZVfP76VfCfvEqJL7Zqrqp6s9/tIrPS+TcRjjZeTeczZZetPM/9A9xl7OahO+ZzTSjTfBWYAqENTxZb3c/wMUl5lLnnK2z7wcNqDavCO3fKFRrJI2awBiBl58SYqVpfHE+r2xTaHqcMI2gwy/E5O9ZqWSBNo6Aow=
